@@ -10,9 +10,12 @@ public class CollatzSequence {
             } else {
                 value = value*3+1;
             }
-            result += value+"->";
+            if (value == 1) {
+                result += value;
+            } else {
+                result += value+"->";
+            }
         }
-        result += "->1";
 
         return result;
     }

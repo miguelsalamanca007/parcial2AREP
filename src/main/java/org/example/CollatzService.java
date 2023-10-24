@@ -7,10 +7,19 @@ public class CollatzService {
     public static void main(String... args){
         CollatzSequence collatzSequence = new CollatzSequence();
         port(getPort());
-        staticFileLocation("public");
+        staticFileLocation("/");
         get("/collatzsequence", (req, res) -> {
             int value = Integer.parseInt(req.queryParams("value"));
-            String response = collatzSequence.calculateSequence(value);
+            String sequence = collatzSequence.calculateSequence(value);
+            String response = "{\n" +
+                    "\n" +
+                    " \"operation\": \"collatzsequence\",\n" +
+                    "\n" +
+                    " \"input\": \"" + value + "\",\n" +
+                    "\n" +
+                    " \"output\":  \"" + sequence + "\"\n" +
+                    "\n" +
+                    "}";
             return response;
         });
         get("hello", (req,res) -> "Hello Docker!");
